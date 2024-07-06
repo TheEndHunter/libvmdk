@@ -6,7 +6,7 @@ Param (
 	[string]$Configuration = ${Env:Configuration},
 	[string]$Platform = ${Env:Platform},
 	[string]$PlatformToolset = "",
-	[string]$PythonPath = "C:\Python311",
+	[string]$PythonPath = "C:\Program Files\Python312\",
 	[string]$VisualStudioVersion = "",
 	[string]$VSToolsOptions = "--extend-with-x64",
 	[string]$VSToolsPath = "..\vstools"
@@ -48,6 +48,7 @@ Else
 		Pop-Location
 	}
 }
+
 If (-Not (Test-Path ${MSVSCppConvert}))
 {
 	Write-Host "Missing msvscpp-convert.py: ${MSVSCppConvert}" -foreground Red
@@ -68,6 +69,12 @@ If ((${VisualStudioVersion} -ne "2008") -And (${VisualStudioVersion} -ne "2010")
 }
 $MSBuild = ""
 
+If(Test-Path -Path "C:\Program Files (x86)\Microsoft Visual Studio\Installer")
+{
+    $MSBuild = $(& "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -prerelease -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe) | select-object -last 1
+}
+Else
+{
 If (${VisualStudioVersion} -eq "2008")
 {
 	$MSBuild = "C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe"
@@ -109,6 +116,7 @@ ElseIf (${VisualStudioVersion} -eq "2019" -Or ${VisualStudioVersion} -eq "2022")
 	{
 		$MSBuild = $Results[0].FullName
 	}
+}
 }
 If (-Not ${MSBuild})
 {

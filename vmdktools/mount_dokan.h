@@ -26,7 +26,7 @@
 #include <types.h>
 
 #if defined( HAVE_LIBDOKAN )
-#include <dokan.h>
+#include <dokan/dokan.h>
 #endif
 
 #include "mount_file_entry.h"
