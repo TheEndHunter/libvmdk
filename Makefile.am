@@ -23,6 +23,7 @@ SUBDIRS = \
 	manuals \
 	tests \
 	ossfuzz \
+	vs2022 \
 	msvscpp
 
 DPKG_FILES = \

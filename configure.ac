@@ -196,6 +196,7 @@ AC_CONFIG_FILES([manuals/Makefile])
 AC_CONFIG_FILES([tests/Makefile])
 AC_CONFIG_FILES([ossfuzz/Makefile])
 AC_CONFIG_FILES([msvscpp/Makefile])
+AC_CONFIG_FILES([vs2022/Makefile])
 dnl Generate header files
 AC_CONFIG_FILES([include/libvmdk.h])
 AC_CONFIG_FILES([include/libvmdk/definitions.h])
